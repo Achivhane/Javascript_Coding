@@ -1,0 +1,244 @@
+
+ng new my-app --no-standalone --routing --ssr=false
+
+
+
+
+1. AOT vs JIT  -->done
+2. use of Angular
+3. Angular Hooks --> done
+4. Data passing between components  -->Done
+5. Dependecny Injection ---done
+6. Services --- done
+7. Services Access typs
+8. List of listeners
+9. Use of Http Listeners 
+10. Directives
+11. How can we create Custom Directice
+12. Pipes  -->Done
+13. Pure Pipes vs Impure Pipes  --> Done
+14. Types of Guards
+15. Lazy loading -->Done
+16. Routing
+17. forRoot vs forChild
+18. Route Params
+19. Cookies
+20. Cache
+21. how you prevent login from multiple devices
+22. how can we make api call every 3 minutes
+23. Authontication
+24. Authorization
+25. Rxjs ---> done
+26. Observables vs promises  ---> done
+27. async  -->Done
+28. Subject vs BehaviourSubject ---> done
+
+Subject: 
+Subjects have no initial value. 
+Subscribers will not receive the last emitted value upon subscription.
+
+BehaviourSubject:
+Has an initial value.
+Subscribers will receive the last emitted value upon subscription. 
+
+
+
+testBed allow us to test both component and template 
+
+while tesing components we need to declarations in testBed
+while testing Service , we need to use providers in testBed
+
+
+
+1)What is the difference between AngularJS and Angular? 
+2)What are the biggest advantages of using Angular?
+ 3)what is the execution flow of angular?/How does an Angular application work?s 
+ 4)What are templates in Angular? 
+ 5)What is AOT in Angular? 
+ 6)What are directives in Angular?
+
+7)What is lazy loading in Angular? 
+8)What do you mean by RouterOutlet and RouterLink? 
+9)What is HttpClient, and what are the advantages of it? 
+10)What is the best way to perform Error handling in Angular? 
+11)What do you understand by observable and observer in Angular? 
+12)What is the use of Angular filters? 13)What are string interpolation and property binding in Angular? 
+14)What is Dependency Injection in Angular?
+
+
+- Explain Full setup to create FrontEnd using Angular and Backend using Spring Boot application from scratch
+- Explain Lazy Loading
+- Explain Angular Directive
+- Explain Angular main copmonents
+- Explain Angular Pipes & how to create custom pipes
+- Explain Data Binding types
+- Explain Observable and Promise
+- Explain Exception Handing in Angular if any Api request failed
+- Explain serial request handling in angular not parallel
+- Explain ngModel
+- Explain Flux/Redux
+- Explain JIT and AOT
+
+of :
+The ‘of’ operator in RxJS is a creation operator used to create an observable that emits a sequence of values that you provide as arguments
+It allows you to quickly create an observable with predefined set of values.
+observable1= of([1,2,3,4]);
+this.observable1.subscribe((data)=>{
+      console.log(data)
+ })
+ 
+forkJoin:
+We use forkJoin to combine these observables into a single observable.
+After subscription, we receive the combined results as an array
+forkJoin is RxJS operator that allows you to combine the result of multiple observables and emits those result as an array 
+It is a powerful tool for performing multiple asynchronous operation in parallel and waiting for all of them to complete before taking further action
+
+concat :
+The concat operator in RxJS combines multiple observables in a specific order.
+It ensures that observables are concatenated sequentially, one after the other.
+This is helpful when you want to maintain a specific order of execution for asynchronous operations, such as making HTTP requests in a specific sequence.
+const sourceA$ = of(1, 2, 3);
+    const sourceB$ = of(4, 5, 6);
+    const sourceC$ = of(7, 8, 9);
+    const source$ = concat(sourceA$, sourceB$, sourceC$);
+
+    source$.subscribe((data) => console.log(data));
+
+
+switchMap:
+
+It cancels the previous requests and process the last request
+switchMap is useful when you want to cancel previous asynchronous operations when new data arrives.
+For example, in a search box, you might cancel previous search requests when a new search term is entered.
+
+
+Event propogation:  it describe order in which events are handled
+three phases:
+1. Capturing: from root to targetted element
+2. target: event reach to target element
+3. bubbling: event bubble up from targetted element to room element
+
+
+
+event Bubbling: event is propagate from targetted element to root element
+
+for example: we have div with id as parent and inside div we are having button with id child 
+here we will use 
+Document.getElementbyId('parent').addEventListener('click', ()=>{
+console.log("parent clicked");
+})
+Document.getElementbyId('child').addEventListener('click', ()=>{
+console.log("child clicked");
+})
+
+Event Capturing: event is propagete from root elemnt to the targetted element
+for example: we have div with id as parent and inside div we are having button with id child 
+here we will use 
+Document.getElementbyId('parent').addEventListener('click', ()=>{
+console.log("parent clicked");
+}, true)
+Document.getElementbyId('child').addEventListener('click', ()=>{
+console.log("child clicked");
+}, true)
+
+
+import {Pipe, PipeTransform } from @angular/core;
+
+
+@Pipe({
+name: 'CustomPipe' });
+
+export class reverse implements PipeTransform(){
+transform(value){
+return value.split()
+}
+
+
+
+@Pipe({
+name:'reverse'})
+export class reverseComponent implementsPipeTransform(){
+transform(value){
+return value.split('').reverse().join('');
+}
+}
+
+
+import {elementReferance} from @angular/core;
+@Decorator({
+selector: backgroundColor
+})
+
+export class backgroundColor implements (){
+constructor(private ele:elementReferance){
+this.ele.style.backgroundColor = 'blue'
+}
+
+
+}
+
+import {Directive, elementRef} from  '@angular/core';
+
+export class OnClickChange(){
+constructor(private ele:elementRef){
+this.ele.nativeElement.style.backgroundColor = 'blue'
+@HostBinding('click') onClick(){
+this.ele.nativeElement.style.backgroundColor= 'blue'
+}
+}
+}
+
+interface person{
+name: {type: string,
+required: true},
+age:number,
+email: string 
+}
+class Person{
+name= string
+constructor(name=string){
+this.name = name;
+}
+greet(){
+console.log("Hello I am "+this.name)
+}
+}
+const obj = new person("Asmita")
+obj.greet()
+
+
+
+
+const obervable = new BehavioralSubject('')
+
+const messageU = '';
+
+setValue(message:string){
+return this.obervable.next(message)
+
+}
+
+getValue(){
+return messageU = next.obervable.AsObservable();
+}
+
+
+
+private message =  new BehaviorSubject("");
+
+setMessage(meassages:string){
+return this.message.next(meassages)
+}
+
+getMessage(){
+return this.message.AsObservable();
+}
+
+this.msgService.setMessage("testing the application")
+
+
+
+Postman
+username -achivhane
+pass- 
+email-asmita12016@gmail.com
